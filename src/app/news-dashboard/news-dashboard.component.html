@@ -1,0 +1,55 @@
+<header><h1 class="text-center m-2">News</h1></header>
+
+<main>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-12">
+        <input class="news-search"
+               type="text" placeholder="Search for news..."
+               (keyup)="onSearch($event)">
+        <p class="search-prompt" *ngIf="hasSearched">No results found! Type more than 3 characters or try different keywords.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <p class="news-category">
+          <span [ngClass]="{'active-category': activeCategory === 'latest'}"
+                (click)="onCategorySelect('latest')">Latest</span>
+          <span [ngClass]="{'active-category': activeCategory === 'india'}"
+                (click)="onCategorySelect('india')">India</span>
+          <span [ngClass]="{'active-category': activeCategory === 'world'}"
+                (click)="onCategorySelect('world')">World</span>
+          <span [ngClass]="{'active-category': activeCategory === 'business'}"
+                (click)="onCategorySelect('business')">Business</span>
+          <span [ngClass]="{'active-category': activeCategory === 'technology'}"
+                (click)="onCategorySelect('technology')">Technology</span>
+          <span [ngClass]="{'active-category': activeCategory === 'entertainment'}"
+                (click)="onCategorySelect('entertainment')">Entertainment</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12" *ngFor="let newsItem of this.searchResults.length === 0? newsItems : searchResults">
+
+        <div class="news-item">
+          <img #newsImg class="img-responsive float-sm-right news-item-img"
+               [src]="newsItem.urlToImage"
+               alt="Card image cap">
+          <h5 class="mr-5">{{newsItem.title}}</h5>
+          <p class="color-gray">
+            <span class="d-inline-block mr-1">{{newsItem.source.name}}</span>
+            <span class="d-inline-block mr-1 color-black">-</span>
+            <span class="d-inline-block mr-1">{{newsItem.publishedAt | date}}</span>
+          </p>
+          <a [href]="newsItem.url" target="_blank">View Full Story</a>
+          <div class="clearfix"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>

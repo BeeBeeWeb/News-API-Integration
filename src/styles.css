@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  font: normal normal 14px/20px 'Roboto', sans-serif;
+  color: #000;
+}
+
+.color-gray {
+  color: #8c8c8c;;
+}
+
+.clearfix {
+  clear: both;
+}
+
+
+@media screen and (max-width: 767px) {
+
+}
